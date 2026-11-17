@@ -1,4 +1,4 @@
-/* t855u: an old galactic-arcade-v* cache must reload once before START is interactive,
+/* t855u: an old galactic-arcade-test-* cache must reload once before START is interactive,
    and must never kick the player back after they have started. */
 const { open } = require('./lib');
 
@@ -17,7 +17,7 @@ const { open } = require('./lib');
       window.__gaLoadN = n;
       window.__gaSwSoon = 1;   // register the delayed SW immediately after first frames
       if (n !== 1) return;
-      return caches.open('galactic-arcade-v199').then(c => c.put(new Request('/__ga_stale__'), new Response('old', { headers: { 'content-type': 'text/plain' } })));
+      return caches.open('galactic-arcade-test-old').then(c => c.put(new Request('/__ga_stale__'), new Response('old', { headers: { 'content-type': 'text/plain' } })));
     },
   });
 
@@ -28,7 +28,7 @@ const { open } = require('./lib');
       loadN: Number(sessionStorage.getItem('gaLoadN') || 0),
       want: (window.__gaUpdate && window.__gaUpdate.want) || ('galactic-arcade-' + (window.__GA_VER || '')),
       flag: sessionStorage.getItem('gaReloaded.' + ((window.__gaUpdate && window.__gaUpdate.want) || ('galactic-arcade-' + (window.__GA_VER || '')))),
-      stale: keys.filter(k => k.indexOf('galactic-arcade-v') === 0 && k !== ((window.__gaUpdate && window.__gaUpdate.want) || ('galactic-arcade-' + (window.__GA_VER || '')))),
+      stale: keys.filter(k => k.indexOf('galactic-arcade-test-') === 0 && k !== ((window.__gaUpdate && window.__gaUpdate.want) || ('galactic-arcade-' + (window.__GA_VER || '')))),
       updating: document.documentElement.classList.contains('ga-updating'),
       checked: !!(window.__gaUpdate && window.__gaUpdate.checked),
       reloading: !!(window.__gaUpdate && window.__gaUpdate.reloading),
@@ -40,7 +40,7 @@ const { open } = require('./lib');
   console.log('after boot', JSON.stringify(a));
   chk(a.loadN === 2, 'stale cache caused exactly one reload (loadN=' + a.loadN + ')');
   chk(a.flag === '1', 'session guard gaReloaded is set for ' + a.want);
-  chk(a.stale.length === 0, 'old galactic-arcade-v* caches are gone (' + a.stale.join(',') + ')');
+  chk(a.stale.length === 0, 'old galactic-arcade-test-* caches are gone (' + a.stale.join(',') + ')');
   chk(!a.updating && a.checked && !a.reloading, 'start screen is no longer blocked after the reload');
   chk(a.startShown && !a.dismissed, 'still on the start screen (not kicked mid-play)');
   chk(a.frames > 3, 'room is drawing behind the start screen');
@@ -66,7 +66,7 @@ const { open } = require('./lib');
     init: () => { window.__gaSwSoon = 1; },
   });
   const before = await mid.page.evaluate(async () => {
-    await caches.open('galactic-arcade-v198').then(c => c.put(new Request('/__ga_stale2__'), new Response('old')));
+    await caches.open('galactic-arcade-test-old2').then(c => c.put(new Request('/__ga_stale2__'), new Response('old')));
     const frames = window.__arcade.stats.frames;
     const href = location.href;
     if (typeof window.__gaRegisterSW === 'function') window.__gaRegisterSW();
@@ -79,7 +79,7 @@ const { open } = require('./lib');
       frames: window.__arcade && window.__arcade.stats.frames,
       href: location.href,
       arcade: !!window.__arcade,
-      stale: keys.filter(k => k === 'galactic-arcade-v198'),
+      stale: keys.filter(k => k === 'galactic-arcade-test-old2'),
       start: !!document.getElementById('start') && !window.__skipStart,
     };
   });
