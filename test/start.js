@@ -33,7 +33,7 @@ const sfx = PH ? '_phone' : QUEST ? '_quest' : '';
   chk(acc.rows.length === 0, 'start screen has no accessories rows ' + JSON.stringify(acc));
   chk(acc.who.length === 2 && acc.who[0][0] === 'monkey' && acc.who[1][0] === 'alien' && acc.whoH === 'SELECT PLAYER' && acc.name && acc.play,
     'start screen is player select plus name/PLAY ' + JSON.stringify(acc));
-  chk(await page.title() === 'Galactic Arcade', 'page title is Galactic Arcade');
+  chk(await page.title() === 'Nebula Arcade', 'page title is Nebula Arcade');
 
   const layers = await page.evaluate(() => {
     const box = el => { if (!el) return null; const r = el.getBoundingClientRect(); return { x: +r.x.toFixed(1), y: +r.y.toFixed(1), w: +r.width.toFixed(1), h: +r.height.toFixed(1) }; };
