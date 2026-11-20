@@ -445,7 +445,7 @@
   function addCss() { if (document.getElementById('gaCss')) return; var sty = document.createElement('style'); sty.id = 'gaCss'; sty.textContent = css; document.head.appendChild(sty); }
   function build() { var st = document.getElementById('start'); if (!st || ov) return; addCss();
     ov = document.createElement('div'); ov.id = 'gaP';
-    ov.innerHTML = '<canvas id="gaStars"></canvas><div id="gaT"><b>GALACTIC</b><i>ARCADE</i></div>'
+    ov.innerHTML = '<canvas id="gaStars"></canvas><div id="gaT"><b>NEBULA</b><i>ARCADE</i></div>'
       + '<div id="gaStage"><canvas id="gaCv"></canvas><button class="gaAr" id="gaL" aria-label="rotate left">‹</button><button class="gaAr" id="gaR" aria-label="rotate right">›</button></div>'
       + '<div class="gaBox" id="gaNm"><label for="gaIn">YOUR NAME</label><input id="gaIn" maxlength="' + MAXN + '" placeholder="Enter your name..." autocomplete="nickname" autocapitalize="words" spellcheck="false" enterkeyhint="go"></div>'
       + '<div class="gaBox"><div id="gaWho"><div class="gaWhoH" id="gaWhoH">SELECT PLAYER</div><div class="gaWhoRow">'

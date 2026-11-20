@@ -332,7 +332,7 @@ export function setupShop({ scene, tp, play, monkey, camera, st } = {}) {
   add([new THREE.PlaneGeometry(2 * xE, MT - TB).translate(0, (TB + MT) / 2, zm)], mat('shop_mural_top.jpg'), 'muralTop');                                       // above the prize shelves
   add([new THREE.PlaneGeometry(ZF - ZW, MHh).rotateY(Math.PI / 2).translate(-HS + 0.012, MB + MHh / 2, (ZW + ZF) / 2)], mat('shop_mural_side.jpg'), 'muralSide');    // left wall
   add([new THREE.PlaneGeometry(ZF - ZW, MHh).rotateY(-Math.PI / 2).translate(HS - 0.012, MB + MHh / 2, (ZW + ZF) / 2)], mat('shop_mural_side2.jpg'), 'muralSide2'); // right wall
-  add([new THREE.PlaneGeometry(2 * HS, MHh).rotateY(Math.PI).translate(0, MB + MHh / 2, ZF - 0.012)], mat('shop_title_wall.jpg'), 'muralTitle');   // title wall (behind the pad): GALACTIC ARCADE + the game characters
+  add([new THREE.PlaneGeometry(2 * HS, MHh).rotateY(Math.PI).translate(0, MB + MHh / 2, ZF - 0.012)], mat('shop_title_wall.jpg'), 'muralTitle');   // title wall (behind the pad): NEBULA ARCADE + the game characters
 
   // ---------- PRIZE WALL: 4 bays x 5 white-lacquer shelves, lit back panels, chrome edges, warm LED under every shelf, spotlights on top ----------
   const SD = 0.55, Z0 = ZW + SD / 2 + 0.02, SY = [0.42, 1.2, 1.98, 2.76, 3.54], TOP = 5.0, BAYS = 4, BW = SW / BAYS;
